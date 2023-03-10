@@ -131,11 +131,12 @@ def param_decorator(parameter_x=150):
             res = func(parameter_x)
             print("Actions after calling func with decorator parameter")
             return res
-        wrapper.__name__ = func.__name__ #save the name of the function which is passed as argument but not the wrapper name -> best practice to do so -> the same is done with from functools import wrpas
-        wrapper.__doc__ = func.__doc__ # save the doc of the function which is passed as argument but not the wrapper doc  -> best practice to do so -> the same is done with from functools import wrpas
-        return wrapper
-    return decor_func
 
+        wrapper.__name__ = func.__name__  # save the name of the function which is passed as argument but not the wrapper name -> best practice to do so -> the same is done with from functools import wrpas
+        wrapper.__doc__ = func.__doc__  # save the doc of the function which is passed as argument but not the wrapper doc  -> best practice to do so -> the same is done with from functools import wrpas
+        return wrapper
+
+    return decor_func
 
 
 @param_decorator(parameter_x=500)
@@ -143,19 +144,24 @@ def print_x(parameter_x):
     """Function which prints passed parameter"""
     print(parameter_x)
 
+
 print_x()
 print(print_x.__name__)
 print(print_x.__doc__)
 print('=' * 50)
 
 from functools import wraps
+
+
 def param_decorator_with_wrap(parameter_x=150):
     def decor_func(func):
-        @wraps(func) # the same is on lines 134 and 135
+        @wraps(func)  # the same is on lines 134 and 135
         def wrapper():
             print("Actions before calling func with decorator parameter")
             res = func(parameter_x)
             print("Actions after calling func with decorator parameter")
             return res
+
         return wrapper
+
     return decor_func
