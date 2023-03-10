@@ -78,3 +78,7 @@ print(f"Result with strict check: {sc}")
 
 
 
+"""Сheck if element is instance of one of the listed"""
+
+j = 135
+print(isinstance(j, (int, float))) #True
